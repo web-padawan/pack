@@ -1,0 +1,28 @@
+<link rel="import" href="../../../vendor/polymer/polymer.html">
+
+<dom-module id="pb-home-page">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <div>
+      <h1>Home page</h1>
+      <ul>
+        <li><a is="pushstate-anchor" href="/about/">About</a></li>
+      </ul>
+    </div>
+
+  </template>
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'pb-home-page',
+      });
+    })();
+  </script>
+</dom-module>

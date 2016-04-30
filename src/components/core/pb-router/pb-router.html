@@ -1,0 +1,38 @@
+<link rel="import" href="../../../vendor/polymer/polymer.html">
+<link rel="import" href="../../../vendor/app-router/app-router.html">
+<link rel="import" href="../../../vendor/pushstate-anchor/pushstate-anchor.html">
+
+<dom-module id="pb-router">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+  <app-router mode="pushstate">
+    <app-route
+      path="/"
+      import="components/pages/pb-home-page/pb-home-page.html"
+      element="pb-home-page"
+      >
+      </app-route>
+    <app-route
+      path="/about/"
+      import="components/pages/pb-about-page/pb-about-page.html"
+      element="pb-about-page"
+      >
+    </app-route>
+  </app-router>
+
+  </template>
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'pb-router'
+      });
+    })();
+  </script>
+</dom-module>

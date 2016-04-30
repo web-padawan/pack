@@ -1,0 +1,8 @@
+{
+  "name": "polymer-boilerplate",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.4.0",
+    "app-router": "^2.6.1",
+    "pushstate-anchor": "^0.3.2"
+  }
+}
