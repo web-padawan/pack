@@ -1,4 +1,5 @@
 <link rel="import" href="../../../vendor/polymer/polymer.html">
+<link rel="import" href="../../layout/pb-layout/pb-layout.html">
 
 <dom-module id="pb-about-page">
   <template>
@@ -8,12 +9,14 @@
       }
     </style>
 
-    <div>
-      <h1>About</h1>
-      <ul>
-        <li><a is="pushstate-anchor" href="/">Home</a></li>
-      </ul>
-    </div>
+    <pb-layout>
+      <div container>
+        <h1>About</h1>
+        <ul>
+          <li><a is="pushstate-anchor" href="/">Home</a></li>
+        </ul>
+      </div>
+    </pb-layout>
 
   </template>
   <script>
