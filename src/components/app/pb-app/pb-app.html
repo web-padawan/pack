@@ -1,0 +1,24 @@
+<link rel="import" href="../../../vendor/polymer/polymer.html">
+<link rel="import" href="../../core/pb-router/pb-router.html">
+
+<dom-module id="pb-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <pb-router></pb-router>
+
+  </template>
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'pb-app'
+      });
+    })();
+  </script>
+</dom-module>

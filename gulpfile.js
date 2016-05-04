@@ -44,7 +44,7 @@ gulp.task('copy', function() {
 // 1. Vulcanize elements, generate shared.html
 // 2. Rewrite imports, fix Windows path separator bug
 gulp.task('vulcanize', function() {
-  return gulp.src(['src/components/**/*.html'], { base: 'src', read: false })
+  return gulp.src(['src/components/{app,pages}/**/*.html'], { base: 'src', read: false })
     .pipe($.webComponentShards({
       root: 'src',
       shared: 'components/shared.html',
