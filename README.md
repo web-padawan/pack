@@ -22,6 +22,10 @@
 
 `gulp serve:dist` 
 
-### Run JavaScript lint
+### Run JavaScript lint 
 
 `npm run eslint -s`
+
+### Run HTML hint 
+
+`npm run htmlhint -s`
