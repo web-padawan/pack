@@ -6,7 +6,6 @@ var del = require('del');
 var runSequence = require('run-sequence');
 var merge = require('merge-stream');
 var path = require('path');
-var fs = require('fs');
 var polyclean = require('polyclean');
 var child = require('child_process');
 
@@ -14,12 +13,11 @@ var DIST = 'dist';
 var TMP = '.tmp';
 
 var dist = function(subpath) {
-  return !subpath ? DIST : path.join(DIST, subpath);
+  return subpath ? path.join(DIST, subpath) : DIST;
 };
 
-// Copy files to dist
+// Copy files to dist and .tmp
 gulp.task('copy', function() {
-
   // Copy index.html
   var index = gulp.src('src/index.html')
     .pipe($.htmlmin({
@@ -27,15 +25,21 @@ gulp.task('copy', function() {
       removeComments: true
     }))
     .pipe(polyclean.uglifyJs())
-    .pipe($.crisper({ scriptInHead: true }))
+    .pipe($.crisper({
+      scriptInHead: true
+    }))
     .pipe($.replace('index.js', '/index.js'))
     .pipe(gulp.dest(dist()));
+
+  // Copy normalize-css to .tmp
+  var styles = gulp.src('src/styles/normalize-css.html')
+    .pipe(gulp.dest(TMP + '/styles'));
 
   // Copy webcomponents.js
   var vendor = gulp.src('src/vendor/webcomponentsjs/webcomponents-lite.min.js')
     .pipe(gulp.dest(dist('vendor/webcomponentsjs')));
 
-  return merge(index, vendor)
+  return merge(index, vendor, styles)
     .pipe($.size({
       title: 'copy'
     }));
@@ -44,7 +48,7 @@ gulp.task('copy', function() {
 // 1. Vulcanize elements, generate shared.html
 // 2. Rewrite imports, fix Windows path separator bug
 gulp.task('vulcanize', function() {
-  return gulp.src(['src/components/{app,pages}/**/*.html'], { base: 'src', read: false })
+  return gulp.src('src/components/{app,pages}/**/*.html', { base: 'src', read: false })
     .pipe($.webComponentShards({
       root: 'src',
       shared: 'components/shared.html',
@@ -61,18 +65,17 @@ gulp.task('vulcanize', function() {
 // 1. Minify html, css & js
 // 2. Put scripts from .html to external files
 gulp.task('minify', function() {
-  return gulp.src(TMP + '/components/**/*.html')
+  return gulp.src(TMP + '/{components,styles}/**/*.html')
     .pipe($.htmlmin({
       collapseWhitespace: true,
       removeComments: true,
-      minifyCss: true
+      minifyCSS: true
     }))
-    .pipe(polyclean.cleanCss())
     .pipe(polyclean.uglifyJs())
     .pipe($.crisper({
       scriptInHead: false
     }))
-    .pipe(gulp.dest(dist('components')))
+    .pipe(gulp.dest(dist()))
     .pipe($.size({
       title: 'minify'
     }));
