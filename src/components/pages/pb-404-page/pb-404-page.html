@@ -1,0 +1,31 @@
+<link rel="import" href="../../../vendor/polymer/polymer.html">
+<link rel="import" href="../../layout/pb-layout/pb-layout.html">
+
+<dom-module id="pb-404-page">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+
+    <pb-layout>
+      <div container>
+        <h1>Pahe not found</h1>
+        <ul>
+          <li><a is="pushstate-anchor" href="/">Go home</a></li>
+        </ul>
+      </div>
+    </pb-layout>
+
+  </template>
+  <script>
+    (function() {
+      'use strict';
+
+      Polymer({
+        is: 'pb-404-page'
+      });
+    })();
+  </script>
+</dom-module>
