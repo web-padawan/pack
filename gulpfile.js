@@ -31,24 +31,31 @@ gulp.task('copy', function() {
     .pipe($.replace('index.js', '/index.js'))
     .pipe(gulp.dest(dist()));
 
-  // Copy normalize-css to .tmp
-  var styles = gulp.src('src/styles/normalize-css.html')
-    .pipe(gulp.dest(TMP + '/styles'));
-
   // Copy webcomponents.js
   var vendor = gulp.src('src/vendor/webcomponentsjs/webcomponents-lite.min.js')
     .pipe(gulp.dest(dist('vendor/webcomponentsjs')));
 
-  return merge(index, vendor, styles)
+  return merge(index, vendor)
     .pipe($.size({
       title: 'copy'
     }));
 });
 
+// Copy fonts to dist
+gulp.task('fonts', function() {
+  return gulp.src('src/vendor/font-roboto/**/*.ttf')
+    .pipe($.ttf2woff())
+    .pipe(gulp.dest(dist('vendor/font-roboto')))
+    .pipe($.size({
+      title: 'fonts'
+    }));
+});
+
 // 1. Vulcanize elements, generate shared.html
 // 2. Rewrite imports, fix Windows path separator bug
+// 3. Rewrite .ttf to .woff
 gulp.task('vulcanize', function() {
-  return gulp.src('src/components/{app,pages}/**/*.html', { base: 'src', read: false })
+  var components = gulp.src('src/components/{app,pages}/**/*.html', { base: 'src', read: false })
     .pipe($.webComponentShards({
       root: 'src',
       shared: 'components/shared.html',
@@ -56,7 +63,14 @@ gulp.task('vulcanize', function() {
       work: TMP + '/shards'
     }))
     .pipe($.replace('..\\', '../'))
-    .pipe(gulp.dest(TMP))
+    .pipe(gulp.dest(TMP));
+
+  var styles = gulp.src('src/styles/shared-styles.html')
+    .pipe($.vulcanize())
+    .pipe($.replace('.ttf', '.woff'))
+    .pipe(gulp.dest(TMP + '/styles'));
+
+  return merge(components, styles)
     .pipe($.size({
       title: 'vulcanize'
     }));
@@ -89,7 +103,9 @@ gulp.task('clean', function() {
 // Build production files
 gulp.task('build', ['clean'], function(cb) {
   runSequence(
-    'copy', 'vulcanize', 'minify',
+    ['copy', 'fonts'],
+    'vulcanize',
+    'minify',
     cb);
 });
 

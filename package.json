@@ -19,6 +19,8 @@
     "gulp-load-plugins": "^1.1.0",
     "gulp-replace": "^0.5.4",
     "gulp-size": "^2.0.0",
+    "gulp-ttf2woff": "^1.1.0",
+    "gulp-vulcanize": "^6.1.0",
     "gulp-web-component-shards": "^1.1.0",
     "htmlhint": "^0.9.13",
     "merge-stream": "^1.0.0",

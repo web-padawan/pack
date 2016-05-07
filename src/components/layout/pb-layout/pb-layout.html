@@ -3,22 +3,22 @@
 
 <dom-module id="pb-layout">
   <template>
-    <style>
+    <style include="shared-styles">
       :host {
         display: block;
       }
     </style>
 
-  <app-header-layout>
-    <app-header>
-      <app-toolbar>
-        <div title>Polymer Boilerplate</div>
-      </app-toolbar>
-    </app-header>
-    <div>
-      <content select="[container]"></content>
-    </div>
-  </app-header-layout>
+    <app-header-layout>
+      <app-header>
+        <app-toolbar>
+          <div title>Polymer Boilerplate</div>
+        </app-toolbar>
+      </app-header>
+      <div>
+        <content select="[container]"></content>
+      </div>
+    </app-header-layout>
 
   </template>
   <script>
