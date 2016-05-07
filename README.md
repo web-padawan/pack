@@ -21,3 +21,7 @@
 ### Serve project from /dist 
 
 `gulp serve:dist` 
+
+### Run JavaScript lint
+
+`npm run eslint -s`

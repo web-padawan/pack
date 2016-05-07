@@ -1,0 +1,14 @@
+{
+  "extends": "google",
+  "plugins": [ "html" ],
+  "rules":  {
+    new-cap: ["error", {"capIsNewExceptions": ["Polymer"]}]
+  },
+  "env": {
+    "browser": true,
+    "mocha": true
+  },
+  "globals": {
+    "Polymer": true
+  }
+}
