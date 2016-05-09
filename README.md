@@ -29,3 +29,13 @@
 ### Run HTML hint 
 
 `npm run htmlhint -s`
+
+## Testing 
+
+### Run tests in Chrome 
+
+`npm test`
+
+### Run tests in Chrome and Firefox 
+
+`npm run test:all`
