@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>pb-router test</title>
+    <script src="../../../../vendor/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <script src="../../../../vendor/web-component-tester/browser.js"></script>
+    <link rel="import" href="../pb-router.html">
+    <link rel="import" href="pb-route-stub.html">
+  </head>
+  <body>
+    <test-fixture id="pb-router-fixture">
+      <template>
+        <pb-router>
+          <app-route
+            path="/\/components\/(.+)/"
+            regex redirect="/test/fahrenheit/451/">
+          </app-route>
+          <app-route
+            path="/test/:scale/:degree/"
+            element="pb-route-stub">
+          </app-route>
+        </pb-router>
+      </template>
+    </test-fixture>
+    <script>
+      suite('<pb-router>', function() {
+        var router;
+        setup(function() {
+          router = fixture('pb-router-fixture');
+        });
+        test('Redirect works and route params are passed', function(done) {
+          router.addEventListener('pb-route-changed', function(e) {
+            expect(e.detail.data.model).to.be.an('object');
+            expect(e.detail.data.model.scale).to.equal('fahrenheit');
+            expect(e.detail.data.model.degree).to.equal(451);
+            done();
+          });
+          router.start();
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -10,26 +10,33 @@
       }
     </style>
 
-  <app-router mode="pushstate">
-    <app-route
-      path="/"
-      import="components/pages/pb-home-page/pb-home-page.html"
-      element="pb-home-page"
-      >
+    <app-router id="router" mode="pushstate" init="manual">
+
+      <!-- insertion point for mock routes -->
+      <content select="app-route"></content>
+
+      <app-route
+        path="/"
+        import="components/pages/pb-home-page/pb-home-page.html"
+        element="pb-home-page"
+        >
       </app-route>
-    <app-route
-      path="/about/"
-      import="components/pages/pb-about-page/pb-about-page.html"
-      element="pb-about-page"
-      >
-    </app-route>
-    <app-route
-      path="*"
-      import="components/pages/pb-404-page/pb-404-page.html"
-      element="pb-404-page"
-      >
-    </app-route>
-  </app-router>
+
+      <app-route
+        path="/about/"
+        import="components/pages/pb-about-page/pb-about-page.html"
+        element="pb-about-page"
+        >
+      </app-route>
+
+      <app-route
+        path="*"
+        import="components/pages/pb-404-page/pb-404-page.html"
+        element="pb-404-page"
+        >
+      </app-route>
+
+    </app-router>
 
   </template>
   <script>
@@ -37,7 +44,29 @@
       'use strict';
 
       Polymer({
-        is: 'pb-router'
+        is: 'pb-router',
+        listeners: {
+          'router.activate-route-end': '_onRouteChanged'
+        },
+        properties: {
+          auto: {
+            type: Boolean,
+            value: false
+          }
+        },
+        start: function() {
+          this.$.router.init();
+        },
+        attached: function() {
+          if (this.auto) {
+            this.start();
+          }
+        },
+        _onRouteChanged: function(e) {
+          this.fire('pb-route-changed', {
+            data: e.detail
+          });
+        }
       });
     })();
   </script>
