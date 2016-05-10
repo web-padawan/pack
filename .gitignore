@@ -3,3 +3,4 @@ dist
 src/vendor
 .tmp
 .publish/
+coverage

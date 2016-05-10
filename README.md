@@ -32,10 +32,10 @@
 
 ## Testing 
 
-### Run tests in Chrome 
+### Run tests in Chrome, open coverage report
 
 `npm test`
 
-### Run tests in Chrome and Firefox 
+### Run tests in Chrome and Firefox, open coverage report
 
 `npm run test:all`
