@@ -2,7 +2,7 @@
 
 ## Installation 
 
-`npm i -g gulp bower local-web-server` 
+`npm i -g gulp bower`
 
 `npm i` 
 

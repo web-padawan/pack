@@ -1,5 +1,4 @@
 {
   "port": 8100,
-  "spa": "index.html",
-  "verbose": true
+  "spa": "index.html"
 }

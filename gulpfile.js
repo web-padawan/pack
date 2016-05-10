@@ -11,6 +11,7 @@ var child = require('child_process');
 
 var DIST = 'dist';
 var TMP = '.tmp';
+var SERVER = 'node_modules/local-web-server/bin/cli.js';
 
 var dist = function(subpath) {
   return subpath ? path.join(DIST, subpath) : DIST;
@@ -111,12 +112,12 @@ gulp.task('build', ['clean'], function(cb) {
 
 // Serve project from dist
 gulp.task('serve:dist', function(done) {
-  return child.spawn('ws.cmd', ['--directory=dist'], {stdio: 'inherit'})
+  return child.spawn('node', [SERVER, '--directory=dist'], {stdio: 'inherit'})
     .on('close', done);
 });
 
 // Serve project from src
 gulp.task('default', function(done) {
-  return child.spawn('ws.cmd', ['--directory=src'], {stdio: 'inherit'})
+  return child.spawn('node', [SERVER, '--directory=src'], {stdio: 'inherit'})
     .on('close', done);
 });
