@@ -6,7 +6,6 @@
     <script src="../../../../vendor/webcomponentsjs/webcomponents-lite.min.js"></script>
     <script src="../../../../vendor/web-component-tester/browser.js"></script>
     <link rel="import" href="../pb-router.html">
-    <link rel="import" href="pb-route-stub.html">
   </head>
   <body>
     <test-fixture id="pb-router-fixture">
@@ -18,7 +17,7 @@
           </app-route>
           <app-route
             path="/test/:scale/:degree/"
-            element="pb-route-stub">
+            element="pb-page-stub">
           </app-route>
         </pb-router>
       </template>
@@ -34,6 +33,11 @@
             expect(e.detail.data.model).to.be.an('object');
             expect(e.detail.data.model.scale).to.equal('fahrenheit');
             expect(e.detail.data.model.degree).to.equal(451);
+
+            expect(router.routeData).to.be.an('object');
+            expect(router.routeData.model.scale).to.equal('fahrenheit');
+            expect(router.routeData.model.degree).to.equal(451);
+
             done();
           });
           router.start();

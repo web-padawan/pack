@@ -52,6 +52,12 @@
           auto: {
             type: Boolean,
             value: false
+          },
+          routeData: {
+            type: Object,
+            value: function() {
+              return {};
+            }
           }
         },
         start: function() {
@@ -63,8 +69,9 @@
           }
         },
         _onRouteChanged: function(e) {
+          this.mixin(this.routeData, e.detail);
           this.fire('pb-route-changed', {
-            data: e.detail
+            data: this.routeData
           });
         }
       });
