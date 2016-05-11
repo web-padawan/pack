@@ -25,6 +25,7 @@
     "htmlhint": "^0.9.13",
     "local-web-server": "^1.2.4",
     "merge-stream": "^1.0.0",
+    "npm-run-all": "^2.0.0",
     "opener": "^1.4.1",
     "polyclean": "^1.3.1",
     "run-sequence": "^1.0.2",
@@ -33,8 +34,9 @@
     "web-component-tester-istanbul": "https://github.com/t2ym/web-component-tester-istanbul/tarball/0.10.1"
   },
   "scripts": {
-    "eslint": "eslint src/components --ext .html",
-    "htmlhint": "htmlhint --config .htmlhintrc src/{components,styles}/**/*.html",
+    "lint:js": "eslint src/components --ext .html",
+    "lint:html": "htmlhint --config .htmlhintrc src/{components,styles}/**/*.html",
+    "lint": "npm-run-all -p -c lint:*",
     "test": "wct -l chrome && opener ./coverage/lcov-report/index.html",
     "test:all": "wct -l chrome,firefox && opener ./coverage/lcov-report/index.html"
   }

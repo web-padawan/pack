@@ -24,13 +24,17 @@
 
 ## Linting
 
+### Run all lint tasks in parallel
+
+`npm run lint -s`
+
 ### Run JavaScript lint
 
-`npm run eslint -s`
+`npm run lint:js -s`
 
 ### Run HTML hint
 
-`npm run htmlhint -s`
+`npm run lint:html -s`
 
 ## Testing
 
