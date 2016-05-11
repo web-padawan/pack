@@ -32,11 +32,15 @@ gulp.task('copy', function() {
     .pipe($.replace('index.js', '/index.js'))
     .pipe(gulp.dest(dist()));
 
+  // Copy favicon.ico
+  var favicon = gulp.src('src/resources/favicon.ico')
+    .pipe(gulp.dest(dist('resources')));
+
   // Copy webcomponents.js
   var vendor = gulp.src('src/vendor/webcomponentsjs/webcomponents-lite.min.js')
     .pipe(gulp.dest(dist('vendor/webcomponentsjs')));
 
-  return merge(index, vendor)
+  return merge(index, vendor, favicon)
     .pipe($.size({
       title: 'copy'
     }));
