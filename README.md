@@ -1,36 +1,38 @@
-# Polymer Boilerplate 
+# Polymer Boilerplate
 
-## Installation 
+## Installation
 
 `npm i -g gulp bower`
 
-`npm i` 
+`npm i`
 
-`bower i` 
+`bower i`
 
-## Tasks 
+## Tasks
 
-### Serve project from /src 
+### Serve project from /src
 
-`gulp` 
+`gulp`
 
-### Run production build 
+### Run production build
 
 `gulp build` 
 
-### Serve project from /dist 
+### Serve project from /dist
 
-`gulp serve:dist` 
+`gulp serve:dist`
 
-### Run JavaScript lint 
+## Linting
+
+### Run JavaScript lint
 
 `npm run eslint -s`
 
-### Run HTML hint 
+### Run HTML hint
 
 `npm run htmlhint -s`
 
-## Testing 
+## Testing
 
 ### Run tests in Chrome, open coverage report
 
