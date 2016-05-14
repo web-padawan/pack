@@ -2,7 +2,7 @@
   "name": "polymer-boilerplate",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
-    "app-layout": "PolymerLabs/app-layout#^0.0.15",
+    "app-layout": "PolymerLabs/app-layout#^0.0.17",
     "app-router": "^2.6.1",
     "font-roboto": "PolymerElements/font-roboto-local#^1.0.1",
     "pushstate-anchor": "^0.3.2",
