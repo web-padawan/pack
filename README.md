@@ -48,10 +48,10 @@
 
 ## Scaffolding
 
-### Create new page in `src/components/pages` (you should then add it to router manually):
+### Create new page (you should then add it to router manually):
 
 `gulp add:page`
 
-### Create new element in `src/components/core`:
+### Create new core element:
 
 `gulp add:core`
