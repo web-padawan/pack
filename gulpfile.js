@@ -2,6 +2,7 @@
 
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
+var fs = require('fs');
 var del = require('del');
 var runSequence = require('run-sequence');
 var merge = require('merge-stream');
@@ -11,11 +12,78 @@ var child = require('child_process');
 
 var DIST = 'dist';
 var TMP = '.tmp';
+var APP_PREFIX = 'pb';
 var SERVER = 'node_modules/local-web-server/bin/cli.js';
 
 var dist = function(subpath) {
   return subpath ? path.join(DIST, subpath) : DIST;
 };
+
+// Add new core element
+gulp.task('add:core', function() {
+  var source = gulp.src('templates/core/core-template.tpl');
+  var name;
+  var outputPath;
+  var outputFile;
+
+  return gulp.src('*')
+    .pipe($.prompt.prompt({
+      type: 'input',
+      name: 'name',
+      message: 'Enter element name:'
+    }, function(res) {
+      if (!res.name) {
+        throw new Error('Element name is empty');
+      }
+      name = res.name;
+      outputFile = APP_PREFIX + '-' + name;
+      outputPath = 'src/components/core/' + outputFile;
+      fs.stat(outputPath, function(err) {
+        if (!err) {
+          throw new Error('Element already exists');
+        }
+      });
+      source.pipe($.data({
+        name: name
+      }))
+      .pipe($.swig())
+      .pipe($.rename(outputFile + '.html'))
+      .pipe(gulp.dest(outputPath));
+    }));
+});
+
+// Add new page
+gulp.task('add:page', function() {
+  var source = gulp.src('templates/page/page-template.tpl');
+  var page;
+  var outputPath;
+  var outputFile;
+
+  return gulp.src('*')
+    .pipe($.prompt.prompt({
+      type: 'input',
+      name: 'page',
+      message: 'Enter page name:'
+    }, function(res) {
+      if (!res.page) {
+        throw new Error('Page name is empty');
+      }
+      page = res.page;
+      outputFile = APP_PREFIX + '-' + page + '-page';
+      outputPath = 'src/components/pages/' + outputFile;
+      fs.stat(outputPath, function(err) {
+        if (!err) {
+          throw new Error('Page already exists');
+        }
+      });
+      source.pipe($.data({
+        page: page
+      }))
+      .pipe($.swig())
+      .pipe($.rename(outputFile + '.html'))
+      .pipe(gulp.dest(outputPath));
+    }));
+});
 
 // Copy files to dist and .tmp
 gulp.task('copy', function() {
