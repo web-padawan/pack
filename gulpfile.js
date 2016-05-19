@@ -33,14 +33,14 @@ gulp.task('app:core', function() {
   return gulp.src('*')
     .pipe($.prompt.prompt({
       type: 'input',
-      elem: 'elem',
+      name: 'name',
       message: 'Enter element name:'
     }, function(res) {
       if (!res.name) {
         throw new Error('Element name is empty');
       }
       name = res.name;
-      outputFile = APP_NAME + name;
+      outputFile = APP_NAME + '-' + name;
       outputPath = 'src/components/core/' + outputFile;
       fs.stat(outputPath, function(err) {
         if (!err) {
@@ -51,7 +51,7 @@ gulp.task('app:core', function() {
         name: name,
         prefix: APP_NAME
       }))
-      .pipe($.swig())
+      .pipe($.template())
       .pipe($.rename(outputFile + '.html'))
       .pipe(gulp.dest(outputPath));
     }));
@@ -74,7 +74,7 @@ gulp.task('app:page', function() {
         throw new Error('Page name is empty');
       }
       page = res.page;
-      outputFile = APP_NAME + page + '-page';
+      outputFile = APP_NAME + '-' + page + '-page';
       outputPath = 'src/components/pages/' + outputFile;
       fs.stat(outputPath, function(err) {
         if (!err) {
@@ -85,7 +85,7 @@ gulp.task('app:page', function() {
         page: page,
         prefix: APP_NAME
       }))
-      .pipe($.swig())
+      .pipe($.template())
       .pipe($.rename(outputFile + '.html'))
       .pipe(gulp.dest(outputPath));
     }));

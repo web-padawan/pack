@@ -1,6 +1,6 @@
 <link rel="import" href="../../../vendor/polymer/polymer.html">
 
-<dom-module id="pb-{{name}}">
+<dom-module id="<%= prefix %>-<%= name %>">
   <template>
     <style>
       :host {
@@ -14,7 +14,7 @@
       'use strict';
 
       Polymer({
-        is: 'pb-{{name}}'
+        is: '<%= prefix %>-<%= name %>'
       });
     })();
   </script>

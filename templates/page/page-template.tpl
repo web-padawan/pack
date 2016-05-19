@@ -1,7 +1,7 @@
 <link rel="import" href="../../../vendor/polymer/polymer.html">
-<link rel="import" href="../../layout/pb-layout/pb-layout.html">
+<link rel="import" href="../../layout/<%= prefix %>-layout/<%= prefix %>-layout.html">
 
-<dom-module id="pb-{{page}}-page">
+<dom-module id="<%= prefix %>-<%= page %>-page">
   <template>
     <style include="shared-styles">
       :host {
@@ -9,11 +9,11 @@
       }
     </style>
 
-    <pb-layout>
+    <<%= prefix %>-layout>
       <div container>
-        <h1>{{page}}</h1>
+        <h1><%= page %></h1>
       </div>
-    </pb-layout>
+    </<%= prefix %>-layout>
 
   </template>
   <script>
@@ -21,7 +21,7 @@
       'use strict';
 
       Polymer({
-        is: 'pb-{{page}}-page'
+        is: '<%= prefix %>-<%= page %>-page'
       });
     })();
   </script>
