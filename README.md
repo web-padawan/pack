@@ -24,7 +24,7 @@
 
 ## Scaffolding
 
-### Rename app name, which is used as amespace for elements:
+### Change app name and do magic:
 
 `gulp app:rename`
 
