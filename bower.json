@@ -2,10 +2,13 @@
   "name": "pack",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
-    "app-layout": "PolymerLabs/app-layout#^0.0.17",
+    "app-layout": "PolymerElements/app-layout#^0.9.0",
     "app-router": "^2.6.1",
-    "font-roboto": "PolymerElements/font-roboto-local#^1.0.1",
+    "font-roboto": "PolymerElements/font-roboto-local#1.0.0",
     "pushstate-anchor": "^0.3.2",
     "web-component-tester": "Polymer/web-component-tester#^4.2.2"
+  },
+  "resolutions": {
+    "font-roboto": "1.0.0"
   }
 }
