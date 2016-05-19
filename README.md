@@ -22,6 +22,20 @@
 
 `gulp serve:dist`
 
+## Scaffolding
+
+### Rename app name, which is used as amespace for elements:
+
+`gulp app:rename`
+
+### Create new page (you should then add it to router manually):
+
+`gulp app:page`
+
+### Create new core element:
+
+`gulp app:core`
+
 ## Linting
 
 ### Run all lint tasks in parallel
@@ -45,13 +59,3 @@
 ### Run tests in Chrome and Firefox, open coverage report
 
 `npm run test:all`
-
-## Scaffolding
-
-### Create new page (you should then add it to router manually):
-
-`gulp add:page`
-
-### Create new core element:
-
-`gulp add:core`

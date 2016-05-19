@@ -8,19 +8,23 @@ var runSequence = require('run-sequence');
 var merge = require('merge-stream');
 var path = require('path');
 var polyclean = require('polyclean');
-var child = require('child_process');
+var cp = require('child_process');
+var jsonfile = require('jsonfile');
 
 var DIST = 'dist';
 var TMP = '.tmp';
-var APP_PREFIX = 'pb';
 var SERVER = 'node_modules/local-web-server/bin/cli.js';
+var renamer = 'node_modules/renamer/bin/cli.js';
+
+var packageJson = jsonfile.readFileSync('package.json');
+var APP_NAME = packageJson.name;
 
 var dist = function(subpath) {
   return subpath ? path.join(DIST, subpath) : DIST;
 };
 
 // Add new core element
-gulp.task('add:core', function() {
+gulp.task('app:core', function() {
   var source = gulp.src('templates/core/core-template.tpl');
   var name;
   var outputPath;
@@ -29,14 +33,14 @@ gulp.task('add:core', function() {
   return gulp.src('*')
     .pipe($.prompt.prompt({
       type: 'input',
-      name: 'name',
+      elem: 'elem',
       message: 'Enter element name:'
     }, function(res) {
       if (!res.name) {
         throw new Error('Element name is empty');
       }
       name = res.name;
-      outputFile = APP_PREFIX + '-' + name;
+      outputFile = APP_NAME + name;
       outputPath = 'src/components/core/' + outputFile;
       fs.stat(outputPath, function(err) {
         if (!err) {
@@ -44,7 +48,8 @@ gulp.task('add:core', function() {
         }
       });
       source.pipe($.data({
-        name: name
+        name: name,
+        prefix: APP_NAME
       }))
       .pipe($.swig())
       .pipe($.rename(outputFile + '.html'))
@@ -53,7 +58,7 @@ gulp.task('add:core', function() {
 });
 
 // Add new page
-gulp.task('add:page', function() {
+gulp.task('app:page', function() {
   var source = gulp.src('templates/page/page-template.tpl');
   var page;
   var outputPath;
@@ -69,7 +74,7 @@ gulp.task('add:page', function() {
         throw new Error('Page name is empty');
       }
       page = res.page;
-      outputFile = APP_PREFIX + '-' + page + '-page';
+      outputFile = APP_NAME + page + '-page';
       outputPath = 'src/components/pages/' + outputFile;
       fs.stat(outputPath, function(err) {
         if (!err) {
@@ -77,11 +82,71 @@ gulp.task('add:page', function() {
         }
       });
       source.pipe($.data({
-        page: page
+        page: page,
+        prefix: APP_NAME
       }))
       .pipe($.swig())
       .pipe($.rename(outputFile + '.html'))
       .pipe(gulp.dest(outputPath));
+    }));
+});
+
+// Change app name, rename files and folders, replace occurences
+gulp.task('app:rename', function(done) {
+  var reserved = ['app', 'core', 'dom', 'iron', 'paper', 'test'];
+  var name;
+  return gulp.src('*')
+    .pipe($.prompt.prompt({
+      type: 'input',
+      name: 'name',
+      message: 'Enter new app name to use as namespace for elements:'
+    }, function(res) {
+      if (!res.name) {
+        throw new Error('Namespace is empty');
+      }
+      if (reserved.indexOf(res.name) !== -1) {
+        throw new Error(
+          'Namespace is used by Polymer authors. Plese choose another one.'
+        );
+      }
+      if (res.name === APP_NAME) {
+        throw new Error('Namespace is the same, nothing to change.');
+      }
+      name = res.name;
+      return cp.spawn('node',
+        [
+          renamer,
+          '--find', APP_NAME,
+          '--replace', name,
+          'src/components/**/*'
+        ],
+        {stdio: 'inherit'})
+        .on('error', function(err) {
+          console.error(err);
+        })
+        .on('close', function() {
+          var index = gulp.src('src/index.html')
+            .pipe($.replace(APP_NAME, name))
+            .pipe(gulp.dest('src'));
+
+          var components = gulp.src('src/components/**/*')
+            .pipe($.replace(APP_NAME, name))
+            .pipe(gulp.dest('src/components'));
+
+          var test = gulp.src('test/setup.html')
+            .pipe($.replace(APP_NAME, name))
+            .pipe(gulp.dest('test'));
+
+          var packageJson = gulp.src('./package.json')
+            .pipe($.jsonEditor({name: name}, {'end_with_newline': true}))
+            .pipe(gulp.dest('.'));
+
+         var bowerJson = gulp.src('./bower.json')
+            .pipe($.jsonEditor({name: name}, {'end_with_newline': true}))
+            .pipe(gulp.dest('.'));
+
+          return merge(index, components, test, packageJson, bowerJson);
+        });
     }));
 });
 
@@ -184,12 +249,12 @@ gulp.task('build', ['clean'], function(cb) {
 
 // Serve project from dist
 gulp.task('serve:dist', function(done) {
-  return child.spawn('node', [SERVER, '--directory=dist'], {stdio: 'inherit'})
+  return cp.spawn('node', [SERVER, '--directory=dist'], {stdio: 'inherit'})
     .on('close', done);
 });
 
 // Serve project from src
 gulp.task('default', function(done) {
-  return child.spawn('node', [SERVER, '--directory=src'], {stdio: 'inherit'})
+  return cp.spawn('node', [SERVER, '--directory=src'], {stdio: 'inherit'})
     .on('close', done);
 });
