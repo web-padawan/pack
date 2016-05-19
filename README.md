@@ -1,5 +1,7 @@
 # Polymer App Creation Kit
 
+> Just add water and stir.
+
 ## Installation
 
 `npm i -g gulp bower`
