@@ -2,34 +2,34 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>pb-router test</title>
+    <title>pack-router test</title>
     <script src="../../../../vendor/webcomponentsjs/webcomponents-lite.min.js"></script>
     <script src="../../../../vendor/web-component-tester/browser.js"></script>
-    <link rel="import" href="../pb-router.html">
+    <link rel="import" href="../pack-router.html">
   </head>
   <body>
-    <test-fixture id="pb-router-fixture">
+    <test-fixture id="pack-router-fixture">
       <template>
-        <pb-router>
+        <pack-router>
           <app-route
             path="/\/components\/(.+)/"
             regex redirect="/test/fahrenheit/451/">
           </app-route>
           <app-route
             path="/test/:scale/:degree/"
-            element="pb-page-stub">
+            element="pack-page-stub">
           </app-route>
-        </pb-router>
+        </pack-router>
       </template>
     </test-fixture>
     <script>
-      suite('<pb-router>', function() {
+      suite('<pack-router>', function() {
         var router;
         setup(function() {
-          router = fixture('pb-router-fixture');
+          router = fixture('pack-router-fixture');
         });
         test('Redirect works and route params are passed', function(done) {
-          router.addEventListener('pb-route-changed', function(e) {
+          router.addEventListener('pack-route-changed', function(e) {
             expect(e.detail.data.model).to.be.an('object');
             expect(e.detail.data.model.scale).to.equal('fahrenheit');
             expect(e.detail.data.model.degree).to.equal(451);

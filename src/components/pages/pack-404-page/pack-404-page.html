@@ -1,7 +1,7 @@
 <link rel="import" href="../../../vendor/polymer/polymer.html">
-<link rel="import" href="../../layout/pb-layout/pb-layout.html">
+<link rel="import" href="../../layout/pack-layout/pack-layout.html">
 
-<dom-module id="pb-404-page">
+<dom-module id="pack-404-page">
   <template>
     <style include="shared-styles">
       :host {
@@ -12,14 +12,14 @@
       }
     </style>
 
-    <pb-layout>
+    <pack-layout>
       <div container>
         <h1>Page not found</h1>
         <ul>
           <li><a is="pushstate-anchor" href="/">Go home</a></li>
         </ul>
       </div>
-    </pb-layout>
+    </pack-layout>
 
   </template>
   <script>
@@ -27,7 +27,7 @@
       'use strict';
 
       Polymer({
-        is: 'pb-404-page'
+        is: 'pack-404-page'
       });
     })();
   </script>

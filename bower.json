@@ -1,5 +1,5 @@
 {
-  "name": "polymer-boilerplate",
+  "name": "pack",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.4.0",
     "app-layout": "PolymerLabs/app-layout#^0.0.17",

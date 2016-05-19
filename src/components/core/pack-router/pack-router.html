@@ -2,7 +2,7 @@
 <link rel="import" href="../../../vendor/app-router/app-router.html">
 <link rel="import" href="../../../vendor/pushstate-anchor/pushstate-anchor.html">
 
-<dom-module id="pb-router">
+<dom-module id="pack-router">
   <template>
     <style>
       :host {
@@ -17,22 +17,22 @@
 
       <app-route
         path="/"
-        import="components/pages/pb-home-page/pb-home-page.html"
-        element="pb-home-page"
+        import="components/pages/pack-home-page/pack-home-page.html"
+        element="pack-home-page"
         >
       </app-route>
 
       <app-route
         path="/about/"
-        import="components/pages/pb-about-page/pb-about-page.html"
-        element="pb-about-page"
+        import="components/pages/pack-about-page/pack-about-page.html"
+        element="pack-about-page"
         >
       </app-route>
 
       <app-route
         path="*"
-        import="components/pages/pb-404-page/pb-404-page.html"
-        element="pb-404-page"
+        import="components/pages/pack-404-page/pack-404-page.html"
+        element="pack-404-page"
         >
       </app-route>
 
@@ -44,7 +44,7 @@
       'use strict';
 
       Polymer({
-        is: 'pb-router',
+        is: 'pack-router',
         listeners: {
           'router.activate-route-end': '_onRouteChanged'
         },
@@ -70,7 +70,7 @@
         },
         _onRouteChanged: function(e) {
           this.mixin(this.routeData, e.detail);
-          this.fire('pb-route-changed', {
+          this.fire('pack-route-changed', {
             data: this.routeData
           });
         }

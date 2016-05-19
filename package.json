@@ -1,10 +1,10 @@
 {
   "name": "pack",
   "version": "0.0.1",
-  "description": "A starting point for Polymer 1.0 projects",
+  "description": "Polymer App Creation Kit",
   "repository": {
     "type": "git",
-    "url": "https://github.com/web-padawan/polymer-boilerplate.git"
+    "url": "https://github.com/web-padawan/pack.git"
   },
   "author": "Sergey Kulikov",
   "license": "MIT",

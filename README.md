@@ -1,4 +1,4 @@
-# Polymer Boilerplate
+# Polymer App Creation Kit
 
 ## Installation
 
