@@ -9,6 +9,7 @@
   "author": "Sergey Kulikov",
   "license": "MIT",
   "devDependencies": {
+    "browser-sync": "^2.12.8",
     "del": "^2.0.2",
     "eslint": "^2.10.1",
     "eslint-config-google": "^0.5.0",

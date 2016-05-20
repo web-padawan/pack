@@ -10,6 +10,7 @@ var path = require('path');
 var polyclean = require('polyclean');
 var cp = require('child_process');
 var jsonfile = require('jsonfile');
+var browserSync = require('browser-sync');
 
 var DIST = 'dist';
 var TMP = '.tmp';
@@ -17,6 +18,7 @@ var SERVER = 'node_modules/local-web-server/bin/cli.js';
 var renamer = 'node_modules/renamer/bin/cli.js';
 
 var packageJson = jsonfile.readFileSync('package.json');
+var serverConfig = jsonfile.readFileSync('.local-web-server.json');
 var APP_NAME = packageJson.name;
 
 var dist = function(subpath) {
@@ -247,14 +249,42 @@ gulp.task('build', ['clean'], function(cb) {
     cb);
 });
 
-// Serve project from dist
+// Serve project from dist. No livereload used
 gulp.task('serve:dist', function(done) {
   return cp.spawn('node', [SERVER, '--directory=dist'], {stdio: 'inherit'})
     .on('close', done);
 });
 
 // Serve project from src
-gulp.task('default', function(done) {
+gulp.task('serve', function(done) {
   return cp.spawn('node', [SERVER, '--directory=src'], {stdio: 'inherit'})
     .on('close', done);
 });
+
+// Reload on changes
+gulp.task('reload', function() {
+  browserSync.reload();
+});
+
+// Proxy requests to local-web-server
+gulp.task('browser-sync', function() {
+  var files = [
+    'src/components/**/*',
+    'src/styles/**/*'
+  ];
+  return browserSync.init(files, {
+    proxy: '127.0.0.1:' + serverConfig.port,
+    open: false,
+    injectChanges: true
+  });
+});
+
+// Watch for changes and reload page
+gulp.task('watch', function() {
+  gulp.watch([
+    'src/components/**/*',
+    'src/styles/**/*'
+  ], ['reload']);
+});
+
+gulp.task('default', ['browser-sync', 'serve', 'watch']);
