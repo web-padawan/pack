@@ -1,13 +1,12 @@
 <link rel="import" href="../../../vendor/polymer/polymer.html">
 <link rel="import" href="../../../vendor/app-layout/app-layout.html">
 
+<!-- style module -->
+<link rel="import" href="styles/pack-layout-styles.html">
+
 <dom-module id="pack-layout">
   <template>
-    <style include="shared-styles">
-      :host {
-        display: block;
-      }
-    </style>
+    <style include="pack-layout-styles"></style>
 
     <app-header-layout>
       <app-header>
@@ -16,7 +15,10 @@
         </app-toolbar>
       </app-header>
       <div>
-        <content select="[container]"></content>
+        <h1>
+          <content select="[title]"></content>
+        </h1>
+        <content select="[main]"></content>
       </div>
     </app-header-layout>
 

@@ -1,20 +1,17 @@
 <link rel="import" href="../../../vendor/polymer/polymer.html">
 <link rel="import" href="../../layout/pack-layout/pack-layout.html">
 
+<!-- style module -->
+<link rel="import" href="styles/pack-404-page-styles.html">
+
 <dom-module id="pack-404-page">
   <template>
-    <style include="shared-styles">
-      :host {
-        display: block;
-      }
-      :host h1 {
-        @apply(--font-light);
-      }
-    </style>
+    <style include="pack-404-page-styles"></style>
 
     <pack-layout>
-      <div container>
-        <h1>Page not found</h1>
+      <div title>Page not found</div>
+
+      <div main>
         <ul>
           <li><a is="pushstate-anchor" href="/">Go home</a></li>
         </ul>

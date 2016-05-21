@@ -1,20 +1,16 @@
 <link rel="import" href="../../../vendor/polymer/polymer.html">
 <link rel="import" href="../../layout/pack-layout/pack-layout.html">
 
+<!-- style module -->
+<link rel="import" href="styles/pack-about-page-styles.html">
+
 <dom-module id="pack-about-page">
   <template>
-    <style include="shared-styles">
-      :host {
-        display: block;
-      }
-      :host h1 {
-        @apply(--font-light);
-      }
-    </style>
-
+    <style include="pack-about-page-styles"></style>
     <pack-layout>
-      <div container>
-        <h1>About</h1>
+      <div title>About</div>
+
+      <div main>
         <ul>
           <li><a is="pushstate-anchor" href="/">Home</a></li>
         </ul>
