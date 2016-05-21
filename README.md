@@ -32,8 +32,8 @@ The following tasks are intended to make your life easier.
 
 `gulp app:rename`
 
-**Note**: generaly, you only should run this once after cloning this repo. 
-Pay attention to that `package.json` is used to get your app name. 
+**Note**: generaly, you only should run this once after cloning this repo.  
+Pay attention to that `package.json` is used to get your app name.  
 By design, app name is used as a prefix for all your elements.
 
 ### Create new page:
