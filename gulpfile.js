@@ -27,7 +27,7 @@ var dist = function(subpath) {
 
 // Add new core element
 gulp.task('app:core', function() {
-  var source = gulp.src('templates/core/core-template.tpl');
+  var source = gulp.src('templates/core/**/*.tpl');
   var name;
   var outputPath;
   var outputFile;
@@ -54,7 +54,16 @@ gulp.task('app:core', function() {
         prefix: APP_NAME
       }))
       .pipe($.template())
-      .pipe($.rename(outputFile + '.html'))
+      .pipe($.rename(function(path) {
+        if (path.basename.indexOf('styles') !== -1) {
+          path.basename = outputFile + '-styles';
+        } else if (path.basename.indexOf('test') !== -1) {
+          path.basename = outputFile + '-test';
+        } else {
+          path.basename = outputFile;
+        }
+        path.extname = '.html';
+      }))
       .pipe(gulp.dest(outputPath));
     }));
 });

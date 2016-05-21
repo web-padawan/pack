@@ -1,12 +1,11 @@
 <link rel="import" href="../../../vendor/polymer/polymer.html">
 
+<!-- style module -->
+<link rel="import" href="styles/<%= prefix %>-<%= name %>-styles.html">
+
 <dom-module id="<%= prefix %>-<%= name %>">
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
+    <style include="<%= prefix %>-<%= name %>-styles"></style>
 
   </template>
   <script>

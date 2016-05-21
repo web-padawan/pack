@@ -2,13 +2,12 @@
 <link rel="import" href="../../../vendor/app-router/app-router.html">
 <link rel="import" href="../../../vendor/pushstate-anchor/pushstate-anchor.html">
 
+<!-- style module -->
+<link rel="import" href="styles/pack-router-styles.html">
+
 <dom-module id="pack-router">
   <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
+    <style include="pack-router-styles"></style>
 
     <app-router id="router" mode="pushstate" init="manual">
 
