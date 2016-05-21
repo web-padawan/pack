@@ -184,8 +184,8 @@ gulp.task('copy', function() {
     .pipe(gulp.dest(dist()));
 
   // Copy favicon.ico
-  var favicon = gulp.src('src/resources/favicon.ico')
-    .pipe(gulp.dest(dist('resources')));
+  var favicon = gulp.src('src/favicon.ico')
+    .pipe(gulp.dest(dist()));
 
   // Copy webcomponents.js
   var vendor = gulp.src('src/vendor/webcomponentsjs/webcomponents-lite.min.js')
@@ -205,6 +205,17 @@ gulp.task('fonts', function() {
     .pipe($.size({
       title: 'fonts'
     }));
+});
+
+// Copy and minify images
+gulp.task('images', function() {
+  return gulp.src('src/images/**/*')
+    .pipe($.imagemin({
+      progressive: true,
+      interlaced: true
+    }))
+    .pipe(gulp.dest(dist('images')))
+    .pipe($.size({title: 'images'}));
 });
 
 // 1. Vulcanize elements, generate shared.html
@@ -259,7 +270,7 @@ gulp.task('clean', function() {
 // Build production files
 gulp.task('build', ['clean'], function(cb) {
   runSequence(
-    ['copy', 'fonts'],
+    ['copy', 'fonts', 'images'],
     'vulcanize',
     'minify',
     cb);
