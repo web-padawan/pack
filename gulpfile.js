@@ -61,7 +61,7 @@ gulp.task('app:core', function() {
 
 // Add new page
 gulp.task('app:page', function() {
-  var source = gulp.src('templates/page/page-template.tpl');
+  var source = gulp.src('templates/page/**/*.tpl');
   var page;
   var outputPath;
   var outputFile;
@@ -88,7 +88,14 @@ gulp.task('app:page', function() {
         prefix: APP_NAME
       }))
       .pipe($.template())
-      .pipe($.rename(outputFile + '.html'))
+      .pipe($.rename(function(path) {
+        if (path.basename.indexOf('styles') !== -1) {
+          path.basename = outputFile + '-styles';
+        } else {
+          path.basename = outputFile;
+        }
+        path.extname = '.html';
+      }))
       .pipe(gulp.dest(outputPath));
     }));
 });
@@ -274,7 +281,7 @@ gulp.task('browser-sync', function() {
   ];
   return browserSync.init(files, {
     proxy: '127.0.0.1:' + serverConfig.port,
-    open: false,
+    open: true,
     injectChanges: true
   });
 });
