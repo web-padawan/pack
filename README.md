@@ -26,17 +26,27 @@
 
 ## Scaffolding
 
+The following tasks are intended to make your life easier. 
+
 ### Change app name and do magic:
 
 `gulp app:rename`
 
-### Create new page (you should then add it to router manually):
+**Note**: generaly, you only should run this once after cloning this repo. 
+Pay attention to that `package.json` is used to get your app name. 
+By design, app name is used as a prefix for all your elements.
+
+### Create new page:
 
 `gulp app:page`
+
+**Note**: you should then add new page to `pack-router` manually.
 
 ### Create new core element:
 
 `gulp app:core`
+
+**Note**: you should then include element test into `test/setup.html`.
 
 ## Linting
 
