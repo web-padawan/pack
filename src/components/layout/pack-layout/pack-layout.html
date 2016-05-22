@@ -1,6 +1,8 @@
 <link rel="import" href="../../../vendor/polymer/polymer.html">
 <link rel="import" href="../../../vendor/app-layout/app-layout.html">
 
+<link rel="import" href="../pack-menu/pack-menu.html">
+
 <!-- style module -->
 <link rel="import" href="styles/pack-layout-styles.html">
 
@@ -11,10 +13,11 @@
     <app-header-layout>
       <app-header class="header" shadow>
         <app-toolbar>
+          <pack-menu class="dropdown"></pack-menu>
           <div title class="title">Polymer App Creation Kit</div>
         </app-toolbar>
       </app-header>
-      <div>
+      <div class="container">
         <h1>
           <content select="[title]"></content>
         </h1>
