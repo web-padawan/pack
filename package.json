@@ -46,6 +46,9 @@
     "lint:js": "eslint src/components --ext .html",
     "lint:html": "htmlhint --config .htmlhintrc src/{components,styles}/**/*.html",
     "lint": "npm-run-all -p -c lint:*",
+    "open": "opener http://127.0.0.1:8100",
+    "serve": "gulp serve:dist",
+    "start": "npm-run-all -p serve open",
     "test": "wct -l chrome && opener ./coverage/lcov-report/index.html",
     "test:all": "wct -l chrome,firefox && opener ./coverage/lcov-report/index.html"
   }

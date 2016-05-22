@@ -35,7 +35,7 @@ A lightweight alternative to [Polymer Starter Kit](https://github.com/PolymerEle
 
 ### Serve project from /dist
 
-`gulp serve:dist`
+`npm start`
 
 ## Scaffolding
 
