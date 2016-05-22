@@ -1,0 +1,1 @@
+!function(){"use strict";Polymer({is:"pack-404-page"})}();

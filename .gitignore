@@ -1,6 +1,0 @@
-node_modules
-dist
-src/vendor
-.tmp
-.publish/
-coverage

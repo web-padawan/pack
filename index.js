@@ -1,0 +1,1 @@
+window.Polymer={dom:"shady",lazyRegister:!0};
