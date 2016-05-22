@@ -2,7 +2,8 @@
   "extends": "google",
   "plugins": [ "html" ],
   "rules":  {
-    new-cap: ["error", {"capIsNewExceptions": ["Polymer"]}]
+    new-cap: ["error", {"capIsNewExceptions": ["Polymer"]}],
+    linebreak-style: "off"
   },
   "env": {
     "browser": true,
