@@ -1,6 +1,6 @@
 # Polymer App Creation Kit
 
-A lightweight alternative to [Polymer Starter Kit](https://github.com/PolymerElements/polymer-starter-kit).
+Pack is a lightweight alternative to [Polymer Starter Kit](https://github.com/PolymerElements/polymer-starter-kit).
 
 > Just add water and stir.
 
@@ -15,7 +15,7 @@ A lightweight alternative to [Polymer Starter Kit](https://github.com/PolymerEle
 &nbsp; &nbsp; ✓ Scaffolding tasks for easy elements creation using [Lo-Dash templates](https://lodash.com/docs#template)<br>
 &nbsp; &nbsp; ✓ Simple and elegant project reset using [renamer](https://github.com/75lb/renamer)<br>
 
-## Installation
+## Setup
 
 `npm i -g gulp bower`
 
@@ -23,25 +23,60 @@ A lightweight alternative to [Polymer Starter Kit](https://github.com/PolymerEle
 
 `bower i`
 
-## Tasks
+## General tasks
 
-### Serve project from /src
+#### Serve project from /src
 
 `gulp`
 
-### Run production build
+#### Run production build
 
 `gulp build` 
 
-### Serve project from /dist
+#### Serve project from /dist
 
 `npm start`
 
+## Project structure
+
+Pack keeps components in separate directories.
+
+```
+src/
+|
+|-- components/             # Custom elements and behaviors
+|   |-- app/                # Root component, used as endpoint (separate bunlde is generated)
+|   |-- core/               # Smart components, which contain app logic and should have tests
+|   |-- layout/             # Layout components, used on different pages
+|   |-- pages/              # Page endpoints, lazy loaded by router
+|   |-- shared/             # Reusable dummy components
+|   ...
+|
+|-- styles/                 # Common style modules
+|   |-- shared-styles.html  # Root style module shared between index.html and components
+|   |-- normalize.html      # Normalize CSS
+|   |-- mixins.html         # Shared mixins
+|   |-- variables.html      # Shared variables
+|   ...
+|
+`-- vendor/                 # Bower components
+    |-- polymer/            # Polymer library
+    |-- app-layout/         # Basic layout components
+    |-- app-router/         # Router component
+    ...
+```
+
+#### Notes
+
+* bower components directory (here called `vendor`) must be placed into `src` to resolve imports by vulcanize
+* so, if you want to place `vendor` directory at project root, please create a symlink into `src`
+* pay attention to components marked as **endpoints**: those are passed to [web-component-shards](https://github.com/PolymerLabs/web-component-shards)
+
 ## Scaffolding
 
-The following tasks are intended to make your life easier. 
+Pack is designed to make your life easier.
 
-### Change app name and do magic:
+#### Change app name and do magic:
 
 `gulp app:rename`
 
@@ -49,13 +84,13 @@ The following tasks are intended to make your life easier.
 Pay attention to that `package.json` is used to get your app name.<br>
 By design, app name is also used as a prefix for all your elements.
 
-### Create new page:
+#### Create new page:
 
 `gulp app:page`
 
 **Note**: you should then add new page to `pack-router` manually.
 
-### Create new core element:
+#### Create new core element:
 
 `gulp app:core`
 
@@ -63,24 +98,60 @@ By design, app name is also used as a prefix for all your elements.
 
 ## Linting
 
-### Run all lint tasks in parallel
+#### Run all lint tasks in parallel
 
 `npm run lint -s`
 
-### Run JavaScript lint
+#### Run JavaScript lint
 
 `npm run lint:js -s`
 
-### Run HTML hint
+#### Run HTML hint
 
 `npm run lint:html -s`
 
 ## Testing
 
-### Run tests in Chrome, open coverage report
+#### Run tests in Chrome:
 
 `npm test`
 
-### Run tests in Chrome and Firefox, open coverage report
+#### Run tests in Chrome and Firefox:
 
 `npm run test:all`
+
+**Note**: coverage report is opened only if your coverage exceeds required threshold.
+
+## FAQ
+
+#### Why not using App Toolbox?
+
+Pack is designed to take full control over build process.
+
+#### Why app-router?
+
+Pack uses it for several reasons:
+
+* plain old library agnostic web-component
+* compatible with Polymer 1.4
+* powerful [configuration](https://erikringsmuth.github.io/app-router/#/api)
+* useful [lifecycle events](https://erikringsmuth.github.io/app-router/#/events)
+* great support for [databinding](https://erikringsmuth.github.io/app-router/#/databinding/test)
+* easy redirects
+* manual initialization
+
+Please let me know when official [app-route](https://elements.polymer-project.org/elements/app-route) will implement all this stuff :)
+
+#### Why web-component-shards?
+
+Actually this tool is not designed for SPA, but for web apps having multiple endpoints :)<br>
+But using `wcs` is the only way to split vulcanized app into several bundles.<br>
+At least `pack-app` bundle is unlikely to change very often and so may be cached.<br>
+Separate pages are all different bundles which are lazy loaded.
+
+## Known issues
+
+Pack is not intended to be running from subdirectory on `gh-pages`.<br>
+It might be fixed later, but routing in such cases is likely to be available only in `hash` mode.<br>
+<br>
+For any ideas, feel free to email me at [serguey.kulikov@gmail.com](serguey.kulikov@gmail.com)
