@@ -26,7 +26,7 @@ var dist = function(subpath) {
 };
 
 // Add new core element
-gulp.task('app:core', function() {
+gulp.task('pack:core', function() {
   var source = gulp.src('templates/core/**/*.tpl');
   var name;
   var outputPath;
@@ -69,7 +69,7 @@ gulp.task('app:core', function() {
 });
 
 // Add new page
-gulp.task('app:page', function() {
+gulp.task('pack:page', function() {
   var source = gulp.src('templates/page/**/*.tpl');
   var page;
   var outputPath;
@@ -110,7 +110,7 @@ gulp.task('app:page', function() {
 });
 
 // Change app name, rename files and folders, replace occurences
-gulp.task('app:rename', function(done) {
+gulp.task('pack:rename', function(done) {
   var reserved = ['app', 'core', 'dom', 'iron', 'paper', 'test'];
   var name;
   return gulp.src('*')

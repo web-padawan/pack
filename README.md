@@ -101,7 +101,7 @@ Pack is designed to make your life easier.
 #### Change app name and do magic:
 
 ```
-gulp app:rename
+gulp pack:rename
 ```
 
 **Note**: generaly, you only should run this once after cloning this repo.<br>
@@ -111,7 +111,7 @@ By design, app name is also used as a prefix for all your elements.
 #### Create new page:
 
 ```
-gulp app:page
+gulp pack:page
 ```
 
 **Note**: you should then add new page to `pack-router` manually.
@@ -119,7 +119,7 @@ gulp app:page
 #### Create new core element:
 
 ```
-gulp app:core
+gulp pack:core
 ```
 
 **Note**: you should then include element test into `test/setup.html`.
