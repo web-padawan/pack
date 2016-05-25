@@ -17,25 +17,37 @@ Pack is a lightweight alternative to [Polymer Starter Kit](https://github.com/Po
 
 ## Setup
 
-`npm i -g gulp bower`
+```
+npm i -g gulp bower
+```
 
-`npm i`
+```
+npm i
+```
 
-`bower i`
+```
+bower i
+```
 
 ## General tasks
 
 #### Serve project from /src
 
-`gulp`
+```
+gulp
+```
 
 #### Run production build
 
-`gulp build` 
+```
+gulp build
+```
 
 #### Serve project from /dist
 
-`npm start`
+```
+npm start
+```
 
 ## Project structure
 
@@ -45,10 +57,20 @@ Pack keeps components in separate directories.
 src/
 |
 |-- components/             # Custom elements and behaviors
-|   |-- app/                # Root component, used as endpoint (separate bunlde is generated)
-|   |-- core/               # Smart components, which contain app logic and should have tests
+|   |-- app/
+|   |   |-- pack-app/       # Root endpoint required by index.html
+|   |
+|   |-- core/               # Smart components for app logic. They all should have tests
+|   |   |-- pack-router/    # Wrapper component. Contains list of project routes
+|   |   ...
+|   |
 |   |-- layout/             # Layout components, used on different pages
+|   |   |-- pack-layout/    # Wrapper component. Contains layout skeleton
+|   |   |-- pack-menu/      # Menu component built with some Paper Elements
+|   |   ...
+|   |
 |   |-- pages/              # Page endpoints, lazy loaded by router
+|   |
 |   |-- shared/             # Reusable dummy components
 |   ...
 |
@@ -78,7 +100,9 @@ Pack is designed to make your life easier.
 
 #### Change app name and do magic:
 
-`gulp app:rename`
+```
+gulp app:rename
+```
 
 **Note**: generaly, you only should run this once after cloning this repo.<br>
 Pay attention to that `package.json` is used to get your app name.<br>
@@ -86,13 +110,17 @@ By design, app name is also used as a prefix for all your elements.
 
 #### Create new page:
 
-`gulp app:page`
+```
+gulp app:page
+```
 
 **Note**: you should then add new page to `pack-router` manually.
 
 #### Create new core element:
 
-`gulp app:core`
+```
+gulp app:core
+```
 
 **Note**: you should then include element test into `test/setup.html`.
 
@@ -100,25 +128,37 @@ By design, app name is also used as a prefix for all your elements.
 
 #### Run all lint tasks in parallel
 
-`npm run lint -s`
+```
+npm run lint -s
+```
 
 #### Run JavaScript lint
 
-`npm run lint:js -s`
+```
+npm run lint:js -s
+```
 
 #### Run HTML hint
 
-`npm run lint:html -s`
+```
+npm run lint:html -s
+```
+
+**Note**: only use `-s` flag locally if you don't need `npm-debug.log`
 
 ## Testing
 
 #### Run tests in Chrome:
 
-`npm test`
+```
+npm test
+```
 
 #### Run tests in Chrome and Firefox:
 
-`npm run test:all`
+```
+npm run test:all
+```
 
 **Note**: coverage report is opened only if your coverage exceeds required threshold.
 
@@ -151,7 +191,9 @@ Separate pages are all different bundles which are lazy loaded.
 
 ## Known issues
 
-Pack is not intended to be running from subdirectory on `gh-pages`.<br>
-It might be fixed later, but routing in such cases is likely to be available only in `hash` mode.<br>
-<br>
+* Pack is not designed to run from subfolder on `gh-pages`. I'm going to have a look at this later.<br>
+* Anyway, routing in that case is likely to be available only in `hash` mode.<br>
+* Before running `app:rename` please make sure that you don't have some files opened in your IDE.<br>
+Leaving them opened might break magic of `renamer` (at least in Sublime).<br>
+
 For any ideas, feel free to email me at [serguey.kulikov@gmail.com](serguey.kulikov@gmail.com)
