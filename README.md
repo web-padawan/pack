@@ -1,6 +1,6 @@
 # Polymer App Creation Kit
 
-Pack is a lightweight alternative to [Polymer Starter Kit](https://github.com/PolymerElements/polymer-starter-kit).
+Pack is a lightweight alternative to [Polymer Starter Kit](https://github.com/PolymerElements/polymer-starter-kit) and [App Toolbox](https://www.polymer-project.org/1.0/toolbox/).
 
 > Just add water and stir.
 
@@ -172,11 +172,11 @@ Pack is designed to take full control over build process.
 
 Pack uses it for several reasons:
 
-* plain old library agnostic web-component
+* plain old library agnostic web component
 * compatible with Polymer 1.4
 * powerful [configuration](https://erikringsmuth.github.io/app-router/#/api)
 * useful [lifecycle events](https://erikringsmuth.github.io/app-router/#/events)
-* great support for [databinding](https://erikringsmuth.github.io/app-router/#/databinding/test)
+* great support for [data binding](https://erikringsmuth.github.io/app-router/#/databinding/test)
 * easy redirects
 * manual initialization
 
@@ -193,7 +193,7 @@ Separate pages are all different bundles which are lazy loaded.
 
 * Pack is not designed to run from subfolder on `gh-pages`. I'm going to have a look at this later.<br>
 * Anyway, routing in that case is likely to be available only in `hash` mode.<br>
-* Before running `app:rename` please make sure that you don't have some files opened in your IDE.<br>
+* Before running `pack:rename` please make sure that you don't have some files opened in your IDE.<br>
 Leaving them opened might break magic of `renamer` (at least in Sublime).<br>
 
-For any ideas, feel free to email me at [serguey.kulikov@gmail.com](serguey.kulikov@gmail.com)
+For any ideas, feel free to email me at [serguey.kulikov@gmail.com](mailto:serguey.kulikov@gmail.com)
