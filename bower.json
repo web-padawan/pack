@@ -10,7 +10,7 @@
     "paper-item": "PolymerElements/paper-item#^1.2.1",
     "paper-menu": "PolymerElements/paper-menu#^1.2.2",
     "paper-menu-button": "PolymerElements/paper-menu-button#^1.1.0",
-    "pushstate-anchor": "^0.3.2",
+    "pushstate-anchor": "^0.4.0",
     "web-component-tester": "Polymer/web-component-tester#^4.2.2"
   }
 }
