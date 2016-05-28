@@ -1,0 +1,9 @@
+{
+  "entrypoint": "src/index.html",
+  "shell": "src/components/app/pack-app/pack-app.html",
+  "fragments": [
+    "src/components/pages/pack-404-page/pack-404-page.html",
+    "src/components/pages/pack-home-page/pack-home-page.html",
+    "src/components/pages/pack-about-page/pack-about-page.html"
+  ]
+}
