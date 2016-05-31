@@ -168,6 +168,11 @@ gulp.task('pack:rename', function(done) {
     }));
 });
 
+// Clean output directory
+gulp.task('clean', function() {
+  return del(['.tmp', dist()]);
+});
+
 // Copy files to dist and .tmp
 gulp.task('copy', function() {
   // Copy index.html
@@ -243,37 +248,77 @@ gulp.task('vulcanize', function() {
     }));
 });
 
-// 1. Minify html, css & js
-// 2. Put scripts from .html to external files
-gulp.task('minify', function() {
+// Minify HTML and inline styles
+gulp.task('minify:html', function() {
   return gulp.src(TMP + '/{components,styles}/**/*.html')
     .pipe($.htmlmin({
       collapseWhitespace: true,
       removeComments: true,
       minifyCSS: true
     }))
-    .pipe(polyclean.uglifyJs())
-    .pipe($.crisper({
-      scriptInHead: false
-    }))
-    .pipe(gulp.dest(dist()))
+    .pipe(gulp.dest(TMP))
     .pipe($.size({
-      title: 'minify'
+      title: 'minify:html'
     }));
 });
 
-// Clean output directory
-gulp.task('clean', function() {
-  return del(['.tmp', dist()]);
+// Extract inline scripts
+gulp.task('crisper', function() {
+  return gulp.src(TMP + '/**/*.html')
+    .pipe($.crisper({
+      scriptInHead: false
+    }))
+    .pipe(gulp.dest(TMP))
+    .pipe($.size({
+      title: 'crisper'
+    }));
 });
 
-// Build production files
-gulp.task('build', ['clean'], function(cb) {
+// Minify JS
+gulp.task('minify:js', function() {
+  return gulp.src(TMP + '/**/*.js')
+    .pipe($.uglify())
+    .pipe(gulp.dest(TMP))
+    .pipe($.size({
+      title: 'minify:js'
+    }));
+});
+
+// Remove unused processed files
+gulp.task('napkin', function() {
+  return del(TMP + '/components/pages/**/styles/*.html');
+});
+
+// Move processed files to dist
+gulp.task('finalize', function() {
+  return gulp.src([
+      TMP + '/{components,styles}/**/*.{html,js}',
+      '!' + TMP + '/components/pages/**/styles/*.html'
+    ])
+    .pipe(gulp.dest(dist()))
+    .pipe($.size({
+      title: 'finalize'
+    }));
+});
+
+// Production build pipeline
+gulp.task('build', ['clean'], function(done) {
   runSequence(
     ['copy', 'fonts', 'images'],
     'vulcanize',
-    'minify',
-    cb);
+    'minify:html',
+    'crisper',
+    'minify:js',
+    'napkin',
+    'finalize',
+    function(err) {
+      if (err) {
+        console.error(err);
+        process.exit(1);
+      } else {
+        done();
+      }
+    });
 });
 
 // Serve project from dist. No livereload used
