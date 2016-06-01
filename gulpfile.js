@@ -227,7 +227,7 @@ gulp.task('images', function() {
 // 2. Rewrite imports, fix Windows path separator bug
 // 3. Rewrite .ttf to .woff
 gulp.task('vulcanize', function() {
-  var components = gulp.src('src/components/{app,pages}/**/*.html', { base: 'src', read: false })
+  var components = gulp.src('src/components/{app,pages}/**/*-{app,page}.html', { base: 'src', read: false })
     .pipe($.webComponentShards({
       root: 'src',
       shared: 'components/shared.html',
@@ -284,17 +284,9 @@ gulp.task('minify:js', function() {
     }));
 });
 
-// Remove unused processed files
-gulp.task('napkin', function() {
-  return del(TMP + '/components/pages/**/styles/*.html');
-});
-
 // Move processed files to dist
 gulp.task('finalize', function() {
-  return gulp.src([
-      TMP + '/{components,styles}/**/*.{html,js}',
-      '!' + TMP + '/components/pages/**/styles/*.html'
-    ])
+  return gulp.src(TMP + '/{components,styles}/**/*.{html,js}')
     .pipe(gulp.dest(dist()))
     .pipe($.size({
       title: 'finalize'
@@ -309,7 +301,6 @@ gulp.task('build', ['clean'], function(done) {
     'minify:html',
     'crisper',
     'minify:js',
-    'napkin',
     'finalize',
     function(err) {
       if (err) {
