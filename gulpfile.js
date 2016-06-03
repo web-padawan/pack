@@ -173,10 +173,10 @@ gulp.task('clean', function() {
   return del(['.tmp', dist()]);
 });
 
-// Copy files to dist and .tmp
-gulp.task('copy', function() {
-  // Copy index.html
-  var index = gulp.src('src/index.html')
+// Process index.html
+gulp.task('index', function() {
+  return gulp.src('src/index.html')
+    .pipe($.useref())
     .pipe($.htmlmin({
       collapseWhitespace: true,
       removeComments: true
@@ -186,8 +186,14 @@ gulp.task('copy', function() {
       scriptInHead: true
     }))
     .pipe($.replace('index.js', '/index.js'))
-    .pipe(gulp.dest(dist()));
+    .pipe(gulp.dest(dist()))
+    .pipe($.size({
+      title: 'index'
+    }));
+});
 
+// Copy files to dist
+gulp.task('copy', function() {
   // Copy favicon.ico
   var favicon = gulp.src('src/favicon.ico')
     .pipe(gulp.dest(dist()));
@@ -196,7 +202,7 @@ gulp.task('copy', function() {
   var vendor = gulp.src('src/vendor/webcomponentsjs/webcomponents-lite.min.js')
     .pipe(gulp.dest(dist('vendor/webcomponentsjs')));
 
-  return merge(index, vendor, favicon)
+  return merge(vendor, favicon)
     .pipe($.size({
       title: 'copy'
     }));
@@ -296,7 +302,7 @@ gulp.task('finalize', function() {
 // Production build pipeline
 gulp.task('build', ['clean'], function(done) {
   runSequence(
-    ['copy', 'fonts', 'images'],
+    ['index', 'copy', 'fonts', 'images'],
     'vulcanize',
     'minify:html',
     'crisper',
@@ -338,7 +344,15 @@ gulp.task('browser-sync', function() {
   return browserSync.init(files, {
     proxy: '127.0.0.1:' + serverConfig.port,
     open: true,
-    injectChanges: true
+    injectChanges: true,
+    snippetOptions: {
+      rule: {
+        match: '<span id="browser-sync-binding"></span>',
+        fn: function(snippet) {
+          return snippet;
+        }
+      }
+    }
   });
 });
 
