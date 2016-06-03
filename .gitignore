@@ -4,4 +4,3 @@ src/vendor
 .tmp
 .publish/
 coverage
-build
