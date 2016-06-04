@@ -280,6 +280,18 @@ gulp.task('crisper', function() {
     }));
 });
 
+// Transpile ES2015
+gulp.task('babel', function() {
+  return gulp.src(TMP + '/**/*.js')
+  .pipe($.babel({
+    presets: ['es2015-without-strict']
+  }))
+ .pipe(gulp.dest(TMP))
+    .pipe($.size({
+      title: 'babel'
+    }));
+});
+
 // Minify JS
 gulp.task('minify:js', function() {
   return gulp.src(TMP + '/**/*.js')
@@ -306,6 +318,7 @@ gulp.task('build', ['clean'], function(done) {
     'vulcanize',
     'minify:html',
     'crisper',
+    'babel', // can be excluded if you don't need ES2015
     'minify:js',
     'finalize',
     function(err) {
