@@ -12,7 +12,7 @@ Pack is a lightweight alternative to [Polymer Starter Kit](https://github.com/Po
 &nbsp; &nbsp; ✓ Pre-configured [local-web-server](https://github.com/75lb/local-web-server) with support for mocks, url rewrites and more<br>
 &nbsp; &nbsp; ✓ Linting inline scripts with [ESLint](http://eslint.org) and elements markup with [HTMLHint](https://github.com/yaniswang/HTMLHint)<br>
 &nbsp; &nbsp; ✓ Unit tests with [WCT](https://github.com/Polymer/web-component-tester), including [Istanbul](https://github.com/thedeeno/web-component-tester-istanbul) plugin for coverage<br>
-&nbsp; &nbsp; ✓ Transpiling ES2015 with [Babel](https://babeljs.io)
+&nbsp; &nbsp; ✓ Transpiling ES2015 with [Babel](https://babeljs.io)<br>
 &nbsp; &nbsp; ✓ Scaffolding tasks for easy elements creation using [Lo-Dash templates](https://lodash.com/docs#template)<br>
 &nbsp; &nbsp; ✓ Simple and elegant project reset using [renamer](https://github.com/75lb/renamer)<br>
 
@@ -196,6 +196,7 @@ Separate pages are all different bundles which are lazy loaded.
 * Anyway, routing in that case is likely to be available only in `hash` mode.<br>
 * Before running `pack:rename` please make sure that you don't have some files opened in your IDE.<br>
 Leaving them opened might break magic of `renamer` (at least in Sublime).<br>
-* For transpiling ES2015, [es2015-without-strict](https://github.com/fancyboynet/babel-preset-es2015-without-strict) preset is used. The reason is a bug in [web-animations-next-lite.min.js](https://github.com/web-animations/web-animations-next/issues/402) used by `neon-animated-pages`. It doesn't work in strict mode.<br>
+* For transpiling ES2015, [es2015-without-strict](https://github.com/fancyboynet/babel-preset-es2015-without-strict) preset is used.<br>
+The reason is a bug in [web-animations-next-lite.min.js](https://github.com/web-animations/web-animations-next/issues/402) used by `neon-animated-pages`. It doesn't work in strict mode.<br>
 
 For any ideas, feel free to email me at [serguey.kulikov@gmail.com](mailto:serguey.kulikov@gmail.com)
