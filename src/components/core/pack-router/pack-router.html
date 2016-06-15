@@ -48,10 +48,6 @@
           'router.activate-route-end': '_onRouteChanged'
         },
         properties: {
-          auto: {
-            type: Boolean,
-            value: false
-          },
           routeData: {
             type: Object,
             value: function() {
@@ -61,11 +57,6 @@
         },
         start: function() {
           this.$.router.init();
-        },
-        attached: function() {
-          if (this.auto) {
-            this.start();
-          }
         },
         _onRouteChanged: function(e) {
           this.mixin(this.routeData, e.detail);

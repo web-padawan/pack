@@ -9,7 +9,7 @@
       }
     </style>
 
-    <pack-router auto></pack-router>
+    <pack-router id="router"></pack-router>
 
   </template>
   <script>
@@ -17,7 +17,11 @@
       'use strict';
 
       Polymer({
-        is: 'pack-app'
+        is: 'pack-app',
+        attached: function () {
+          // authorization can be performed here, before starting router
+          this.$.router.start();
+        }
       });
     })();
   </script>
