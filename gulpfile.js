@@ -282,11 +282,11 @@ gulp.task('crisper', function() {
 
 // Transpile ES2015
 gulp.task('babel', function() {
-  return gulp.src(TMP + '/**/*.js')
+  return gulp.src(TMP + '/components/**/*.js')
   .pipe($.babel({
     presets: ['es2015-without-strict']
   }))
- .pipe(gulp.dest(TMP))
+ .pipe(gulp.dest(TMP + '/components'))
     .pipe($.size({
       title: 'babel'
     }));
