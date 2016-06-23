@@ -25,21 +25,25 @@
           </paper-tab>
         </paper-tabs>
 
-        <iron-lazy-pages selected="[[subPage]]" attr-for-selected="sub-page">
-            <template
-              is="iron-lazy-page"
-              sub-page="project"
-              path="/components/pages/pack-about-project-sub-page/pack-about-project-sub-page.html"
-            >
-              <pack-about-project-sub-page></pack-about-project-sub-page>
-            </template>
-            <template
-              is="iron-lazy-page"
-              sub-page="author"
-              path="/components/pages/pack-about-author-sub-page/pack-about-author-sub-page.html"
-            >
-              <pack-about-author-sub-page></pack-about-author-sub-page>
-            </template>
+        <iron-lazy-pages
+          attr-for-selected="sub-page"
+          selected="[[subPage]]"
+          load-async
+        >
+          <template
+            is="iron-lazy-page"
+            sub-page="project"
+            path="/components/pages/pack-about-project-sub-page/pack-about-project-sub-page.html"
+          >
+            <pack-about-project-sub-page></pack-about-project-sub-page>
+          </template>
+          <template
+            is="iron-lazy-page"
+            sub-page="author"
+            path="/components/pages/pack-about-author-sub-page/pack-about-author-sub-page.html"
+          >
+            <pack-about-author-sub-page></pack-about-author-sub-page>
+          </template>
         </iron-lazy-pages>
 
       </div>
