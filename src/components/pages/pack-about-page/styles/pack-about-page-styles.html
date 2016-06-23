@@ -3,6 +3,21 @@
     <style include="shared-styles">
       :host {
         display: block;
+        --paper-tab-ink: var(--blue);
+        --paper-tabs-selection-bar-color: var(--blue);
+      }
+
+      :host .tabs {
+        max-width: 300px;
+        margin-top: 2rem;
+      }
+
+      :host .tab-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-decoration: none;
+        color: inherit;
       }
     </style>
   </template>

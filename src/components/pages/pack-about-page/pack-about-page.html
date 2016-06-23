@@ -1,4 +1,6 @@
 <link rel="import" href="../../../vendor/polymer/polymer.html">
+<link rel="import" href="../../../vendor/paper-tabs/paper-tabs.html">
+<link rel="import" href="../../../vendor/iron-lazy-pages/iron-lazy-pages.html">
 <link rel="import" href="../../layout/pack-layout/pack-layout.html">
 
 <!-- style module -->
@@ -11,9 +13,35 @@
       <div title>About</div>
 
       <div main>
-        <ul>
-          <li><a is="pushstate-anchor" href="/">Home</a></li>
-        </ul>
+
+        <p>Below you can see an example of lazy-loading page fragments.</p>
+
+        <paper-tabs class="tabs" selected="[[subPage]]" attr-for-selected="tab-name">
+          <paper-tab tab-name="project">
+            <a is="pushstate-anchor" href="/about/project/" class="tab-link">Project</a>
+          </paper-tab>
+          <paper-tab tab-name="author">
+            <a is="pushstate-anchor" href="/about/author/" class="tab-link">Author</a>
+          </paper-tab>
+        </paper-tabs>
+
+        <iron-lazy-pages selected="[[subPage]]" attr-for-selected="sub-page">
+            <template
+              is="iron-lazy-page"
+              sub-page="project"
+              path="/components/pages/pack-about-project-sub-page/pack-about-project-sub-page.html"
+            >
+              <pack-about-project-sub-page></pack-about-project-sub-page>
+            </template>
+            <template
+              is="iron-lazy-page"
+              sub-page="author"
+              path="/components/pages/pack-about-author-sub-page/pack-about-author-sub-page.html"
+            >
+              <pack-about-author-sub-page></pack-about-author-sub-page>
+            </template>
+        </iron-lazy-pages>
+
       </div>
     </pack-layout>
 
@@ -23,7 +51,10 @@
       'use strict';
 
       Polymer({
-        is: 'pack-about-page'
+        is: 'pack-about-page',
+        properties: {
+          subPage: String
+        }
       });
     })();
   </script>

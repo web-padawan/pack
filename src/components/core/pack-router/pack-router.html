@@ -18,22 +18,32 @@
         path="/"
         import="components/pages/pack-home-page/pack-home-page.html"
         element="pack-home-page"
-        >
-      </app-route>
+      ></app-route>
 
       <app-route
         path="/about/"
+        redirect="/about/project/"
+      ></app-route>
+
+      <app-route
+        path="/about/project/"
         import="components/pages/pack-about-page/pack-about-page.html"
         element="pack-about-page"
-        >
-      </app-route>
+        data-sub-page="project"
+      ></app-route>
+
+      <app-route
+        path="/about/author/"
+        import="components/pages/pack-about-page/pack-about-page.html"
+        element="pack-about-page"
+        data-sub-page="author"
+      ></app-route>
 
       <app-route
         path="*"
         import="components/pages/pack-404-page/pack-404-page.html"
         element="pack-404-page"
-        >
-      </app-route>
+      ></app-route>
 
     </app-router>
 
@@ -45,7 +55,8 @@
       Polymer({
         is: 'pack-router',
         listeners: {
-          'router.activate-route-end': '_onRouteChanged'
+          'router.activate-route-end': '_onRouteChanged',
+          'router.before-data-binding': '_onBeforeDataBinding'
         },
         properties: {
           routeData: {
@@ -57,6 +68,13 @@
         },
         start: function() {
           this.$.router.init();
+        },
+        _onBeforeDataBinding: function(e) {
+          var route = e.detail.route;
+          if (route.dataset.subPage) {
+            console.log(e.detail);
+            e.detail.model.subPage = route.dataset.subPage;
+          }
         },
         _onRouteChanged: function(e) {
           this.mixin(this.routeData, e.detail);
