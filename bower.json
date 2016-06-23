@@ -11,6 +11,8 @@
     "paper-menu": "PolymerElements/paper-menu#^1.2.2",
     "paper-menu-button": "PolymerElements/paper-menu-button#^1.1.0",
     "pushstate-anchor": "^0.4.0",
-    "web-component-tester": "Polymer/web-component-tester#^4.2.2"
+    "web-component-tester": "Polymer/web-component-tester#^4.2.2",
+    "paper-tabs": "PolymerElements/paper-tabs#^1.6.2",
+    "iron-lazy-pages": "^1.2.0"
   }
 }
