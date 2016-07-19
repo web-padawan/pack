@@ -231,7 +231,6 @@ gulp.task('images', function() {
 
 // 1. Vulcanize elements, generate shared.html
 // 2. Rewrite imports, fix Windows path separator bug
-// 3. Rewrite .ttf to .woff
 gulp.task('vulcanize', function() {
   var components = gulp.src('src/components/{app,pages}/**/*-{app,page}.html', { base: 'src', read: false })
     .pipe($.webComponentShards({
@@ -245,7 +244,6 @@ gulp.task('vulcanize', function() {
 
   var styles = gulp.src('src/styles/shared-styles.html')
     .pipe($.vulcanize())
-    .pipe($.replace('.ttf', '.woff'))
     .pipe(gulp.dest(TMP + '/styles'));
 
   return merge(components, styles)
@@ -254,7 +252,8 @@ gulp.task('vulcanize', function() {
     }));
 });
 
-// Minify HTML and inline styles
+// 1. Minify HTML and inline styles
+// 2. Rewrite .ttf to .woff
 gulp.task('minify:html', function() {
   return gulp.src(TMP + '/{components,styles}/**/*.html')
     .pipe($.htmlmin({
@@ -262,6 +261,7 @@ gulp.task('minify:html', function() {
       removeComments: true,
       minifyCSS: true
     }))
+    .pipe($.replace('.ttf) format("truetype");', '.woff) format("woff");'))
     .pipe(gulp.dest(TMP))
     .pipe($.size({
       title: 'minify:html'
