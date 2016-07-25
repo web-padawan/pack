@@ -2,7 +2,7 @@
   "name": "pack",
   "dependencies": {
     "polymer": "Polymer/polymer#^1.6.0",
-    "app-layout": "PolymerElements/app-layout#^0.9.1",
+    "app-layout": "PolymerElements/app-layout#^0.10.1",
     "app-router": "^2.7.0",
     "font-roboto": "PolymerElements/font-roboto-local#1.0.1",
     "iron-icons": "PolymerElements/iron-icons#^1.1.3",
