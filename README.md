@@ -174,7 +174,7 @@ Pack is designed to take full control over build process.
 Pack uses it for several reasons:
 
 * plain old library agnostic web component
-* compatible with Polymer 1.4
+* compatible with Polymer 1.6
 * powerful [configuration](https://erikringsmuth.github.io/app-router/#/api)
 * useful [lifecycle events](https://erikringsmuth.github.io/app-router/#/events)
 * great support for [data binding](https://erikringsmuth.github.io/app-router/#/databinding/test)
