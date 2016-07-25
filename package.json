@@ -20,7 +20,7 @@
     "gulp-crisper": "^1.1.0",
     "gulp-data": "^1.2.1",
     "gulp-htmlmin": "^2.0.0",
-    "gulp-imagemin": "^3.0.1",
+    "gulp-imagemin": "^3.0.2",
     "gulp-json-editor": "^2.2.1",
     "gulp-load-plugins": "^1.2.4",
     "gulp-prompt": "^0.2.0",
