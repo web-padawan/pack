@@ -1,0 +1,17 @@
+{
+  "extends": "stylelint-config-standard",
+  "processors": [ "stylelint-processor-html" ],
+  "rules": {
+    "at-rule-empty-line-before": [ "always", {
+      except: [ "all-nested" ]
+    } ],
+    "selector-pseudo-class-no-unknown": [
+      true,
+      ignorePseudoClasses: [ "host" ]
+    ],
+    "selector-pseudo-element-no-unknown": [
+      true,
+      ignorePseudoElements: [ "content", "shadow" ]
+    ]
+  }
+}

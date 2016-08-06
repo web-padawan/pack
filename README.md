@@ -10,7 +10,7 @@ Pack is a lightweight alternative to [Polymer Starter Kit](https://github.com/Po
 &nbsp; &nbsp; ✓ Powerful routing using plain old [app-router](https://github.com/erikringsmuth/app-router) and [pushstate-anchor](https://github.com/erikringsmuth/pushstate-anchor)<br>
 &nbsp; &nbsp; ✓ Vulcanize configuration using [web-component-shards](https://github.com/PolymerLabs/web-component-shards) for separate page bundles<br>
 &nbsp; &nbsp; ✓ Pre-configured [local-web-server](https://github.com/75lb/local-web-server) with support for mocks, url rewrites and more<br>
-&nbsp; &nbsp; ✓ Linting inline scripts with [ESLint](http://eslint.org) and elements markup with [HTMLHint](https://github.com/yaniswang/HTMLHint)<br>
+&nbsp; &nbsp; ✓ Linting inline scripts with [ESLint](http://eslint.org), elements markup with [HTMLHint](https://github.com/yaniswang/HTMLHint) ans styles with [Stylelint](https://github.com/stylelint/stylelint)<br>
 &nbsp; &nbsp; ✓ Unit tests with [WCT](https://github.com/Polymer/web-component-tester), including [Istanbul](https://github.com/thedeeno/web-component-tester-istanbul) plugin for coverage<br>
 &nbsp; &nbsp; ✓ Transpiling ES2015 with [Babel](https://babeljs.io)<br>
 &nbsp; &nbsp; ✓ Scaffolding tasks for easy elements creation using [Lo-Dash templates](https://lodash.com/docs#template)<br>
