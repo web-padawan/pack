@@ -10,7 +10,7 @@ Pack is a lightweight alternative to [Polymer Starter Kit](https://github.com/Po
 &nbsp; &nbsp; ✓ Powerful routing using plain old [app-router](https://github.com/erikringsmuth/app-router) and [pushstate-anchor](https://github.com/erikringsmuth/pushstate-anchor)<br>
 &nbsp; &nbsp; ✓ Vulcanize configuration using [web-component-shards](https://github.com/PolymerLabs/web-component-shards) for separate page bundles<br>
 &nbsp; &nbsp; ✓ Pre-configured [local-web-server](https://github.com/75lb/local-web-server) with support for mocks, url rewrites and more<br>
-&nbsp; &nbsp; ✓ Linting inline scripts with [ESLint](http://eslint.org), including a [google](https://github.com/google/eslint-config-google) config<br>
+&nbsp; &nbsp; ✓ Linting inline scripts with [ESLint](http://eslint.org), including a [Google](https://github.com/google/eslint-config-google) config<br>
 &nbsp; &nbsp; ✓ Linting inline styles with [Stylelint](https://github.com/stylelint/stylelint), including a [standard](https://github.com/stylelint/stylelint-config-standard) config<br>
 &nbsp; &nbsp; ✓ Linting elements markup with [HTMLHint](https://github.com/yaniswang/HTMLHint)<br>
 &nbsp; &nbsp; ✓ Unit tests with [WCT](https://github.com/Polymer/web-component-tester), including [Istanbul](https://github.com/thedeeno/web-component-tester-istanbul) plugin for coverage<br>
@@ -145,6 +145,12 @@ npm run lint:js -s
 
 ```
 npm run lint:html -s
+```
+
+#### Run stylelint
+
+```
+npm run lint:css -s
 ```
 
 **Note**: only use `-s` flag locally if you don't need `npm-debug.log`
