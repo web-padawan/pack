@@ -43,7 +43,7 @@
     "renamer": "^0.5.7",
     "run-sequence": "^1.2.2",
     "stylelint": "^7.1.0",
-    "stylelint-config-standard": "^12.0.0",
+    "stylelint-config-polymer": "0.0.1",
     "stylelint-processor-html": "^1.0.0",
     "vulcanize": "1.14.8",
     "web-component-tester": "^4.3.1",
