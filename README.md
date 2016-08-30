@@ -1,6 +1,6 @@
 # Polymer App Creation Kit
 
-Pack is a lightweight alternative to [Polymer Starter Kit](https://github.com/PolymerElements/polymer-starter-kit) and [App Toolbox](https://www.polymer-project.org/1.0/toolbox/).
+An alternative to [Polymer Starter Kit](https://github.com/PolymerElements/polymer-starter-kit).
 
 > Just add water and stir.
 
@@ -11,7 +11,7 @@ Pack is a lightweight alternative to [Polymer Starter Kit](https://github.com/Po
 &nbsp; &nbsp; ✓ Vulcanize configuration using [web-component-shards](https://github.com/PolymerLabs/web-component-shards) for separate page bundles<br>
 &nbsp; &nbsp; ✓ Pre-configured [local-web-server](https://github.com/75lb/local-web-server) with support for mocks, url rewrites and more<br>
 &nbsp; &nbsp; ✓ Linting inline scripts with [ESLint](http://eslint.org), including a [Google](https://github.com/google/eslint-config-google) config<br>
-&nbsp; &nbsp; ✓ Linting inline styles with [Stylelint](https://github.com/stylelint/stylelint), including a [standard](https://github.com/stylelint/stylelint-config-standard) config<br>
+&nbsp; &nbsp; ✓ Linting inline styles with [Stylelint](https://github.com/stylelint/stylelint), including a [Polymer](https://github.com/web-padawan/stylelint-config-polymer) config<br>
 &nbsp; &nbsp; ✓ Linting elements markup with [HTMLHint](https://github.com/yaniswang/HTMLHint)<br>
 &nbsp; &nbsp; ✓ Unit tests with [WCT](https://github.com/Polymer/web-component-tester), including [Istanbul](https://github.com/thedeeno/web-component-tester-istanbul) plugin for coverage<br>
 &nbsp; &nbsp; ✓ Transpiling ES2015 with [Babel](https://babeljs.io)<br>
@@ -173,7 +173,7 @@ npm run test:all
 
 ## FAQ
 
-#### Why not using App Toolbox?
+#### Why not using Polymer CLI?
 
 Pack is designed to take full control over build process.
 
@@ -193,10 +193,8 @@ Please let me know when official [app-route](https://elements.polymer-project.or
 
 #### Why web-component-shards?
 
-Actually this tool is not designed for SPA, but for web apps having multiple endpoints :)<br>
-But using `wcs` is the only way to split vulcanized app into several bundles.<br>
-At least `pack-app` bundle is unlikely to change very often and so may be cached.<br>
-Separate pages are all different bundles which are lazy loaded.
+Actually using `wcs` is the only way to split vulcanized app into several bundles.<br>
+In the future, [polymer-build](https://github.com/Polymer/polymer-build) will be used instead.
 
 ## Known issues
 
