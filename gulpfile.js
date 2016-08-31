@@ -240,6 +240,7 @@ gulp.task('vulcanize', function() {
       work: TMP + '/shards'
     }))
     .pipe($.replace('..\\', '../'))
+    .pipe($.replace(/assetpath=".+"/g, ''))
     .pipe(gulp.dest(TMP));
 
   var styles = gulp.src('src/styles/shared-styles.html')
