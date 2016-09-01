@@ -163,7 +163,7 @@ npm run lint:css -s
 npm test
 ```
 
-#### Run tests in Chrome and Firefox:
+#### Run tests in all browsers:
 
 ```
 npm run test:all
