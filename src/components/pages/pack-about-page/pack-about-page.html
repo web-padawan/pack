@@ -1,4 +1,5 @@
 <link rel="import" href="../../../vendor/polymer/polymer.html">
+<link rel="import" href="../../../vendor/brainy-anchor/brainy-anchor.html">
 <link rel="import" href="../../../vendor/paper-tabs/paper-tabs.html">
 <link rel="import" href="../../../vendor/iron-lazy-pages/iron-lazy-pages.html">
 <link rel="import" href="../../layout/pack-layout/pack-layout.html">
@@ -18,10 +19,10 @@
 
         <paper-tabs class="tabs" selected="[[subPage]]" attr-for-selected="tab-name">
           <paper-tab tab-name="project">
-            <a is="pushstate-anchor" href="/about/project/" class="tab-link">Project</a>
+            <a is="brainy-anchor" href="/about/project/" class="tab-link">Project</a>
           </paper-tab>
           <paper-tab tab-name="author">
-            <a is="pushstate-anchor" href="/about/author/" class="tab-link">Author</a>
+            <a is="brainy-anchor" href="/about/author/" class="tab-link">Author</a>
           </paper-tab>
         </paper-tabs>
 
